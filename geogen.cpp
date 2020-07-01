@@ -40,7 +40,7 @@ void matroid_to_convexgeo(ull matroid)
             {
                 if ((convex_set >> j) & 0x01)
                 {
-                    cout << j << " ";
+                    cout << (char) ('a' + j) << " ";
                 }
             }
             cout << "}" << endl;
@@ -230,7 +230,10 @@ vector<u128> onestep(const vector<u128> P)
         vector<int> automorph = aut(S);
         ans += psize/automorph.size();
         ans2 += 1;
+
+        cout << ans2 << "." << endl;
         S.print();
+
         u128 mask(0,0);
         for(int I=1;I<N-1;I++)
             if(S.getbit(I))

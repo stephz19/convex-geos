@@ -16,6 +16,7 @@ using namespace std;
 
 typedef unsigned long long ull;
 typedef unsigned int us;
+typedef unsigned int uint;
 
 
 int n = 3;
@@ -23,30 +24,131 @@ int N = 1<<n;
 
 const int factorial[] = {1,1,2,6,24,120,720,5040};
 
+void print_set(uint set)
+{
+        for (uint j = 0; j < n; j++)
+        {
+            uint in_set = (set >> j) & 0x01;
+            if (in_set)
+            {
+                cout << (char) ('a' + j) << " ";
+            }
+        }
+}
+
+int element_of(ull element, ull set)
+{
+    return (set >> element) & 0x01;
+}
+
+int subset_of(ull A, ull B)
+{
+    return (B | A) == B;
+}
+
+ull set_minus(ull A, ull B)
+{
+    return A &~ B;
+}
+
+// check if only one bit is set
+int has_one_bit(ull x)
+{
+    return x && (!(x & (x - 1)));
+}
+
+int one_element_extension_of(ull A, ull B)
+{
+    uint difference = set_minus(A, B);
+    uint is_one_elm =  has_one_bit(difference);
+
+    return subset_of(B, A) && is_one_elm;
+}
+
+int is_meet_reduc(ull geo, uint set)
+{
+    // find supersets
+    uint superset_count = 0;
+    for (uint geo_set = 0; geo_set < N; geo_set++)
+    {
+        if (element_of(geo_set, geo))
+        {
+            // check if "geo_set" is a one-element super set of "set"
+            if (one_element_extension_of(geo_set, set)) 
+            {
+            //    cout << " E: { ";
+            //    print_set(geo_set);
+
+            //    cout << " is an extension of ";
+
+            //    print_set(set);
+            //    cout << " } " << endl;
+
+                superset_count++;
+            }
+            if (superset_count > 1) return 0;
+        }
+    }
+
+    return 1;
+}
+
 /* converts antimatroid to convex geometry (: */
 void matroid_to_convexgeo(ull matroid)
 {
-    cout << "{" << endl;
-    for (unsigned int i = 0; i < N; i++)
-    {
-        int is_matroid_set = (matroid >> i) & 0x01;
-        if (is_matroid_set)
-        {
-            // convert antimatroid to convex geo (take complement)
-            int convex_set = ~i;
+    ull geo = 0;
 
+    // list convex sets and build "geo"
+    cout << "convex sets: {" << endl;
+    for (uint i = 0; i < N; i++)
+    {
+        if (element_of(i, matroid))
+        {
+            // convert antimatroid set to convex geo set (take complement)
+            uint convex_set = (~i & (N - 1));
+            // and append to convex geometry
+            geo |= (0x01 << convex_set);
+
+            // also print as we go
             cout << "  { ";
-            for (unsigned int j = 0; j < n; j++)
-            {
-                if ((convex_set >> j) & 0x01)
-                {
-                    cout << (char) ('a' + j) << " ";
-                }
-            }
+            print_set(convex_set);
             cout << "}" << endl;
         }
     } 
     cout << "}" << endl;
+
+    // also lets list all the non-convex sets
+    cout << "non-convex sets: {" << endl;
+    for (uint i = 0; i < N; i++)
+    {
+        if (!element_of(i, matroid)) {
+            // this set is not in our antimatroid, i.e. its
+            // complement is not in our convex geo
+
+            // convert antimatroid set to convex geo set (take complement)
+            uint convex_set = (~i & (N - 1));
+            cout << " *{ ";
+            print_set(convex_set);
+            cout << "}" << endl;
+        }
+    } 
+    cout << "}" << endl;
+
+    // find meet-reducibles
+    cout << "meet-reducibles: " << endl;
+    for (uint set = 0; set < N; set++)
+    {
+        if (element_of(set, geo))
+        {
+            if (is_meet_reduc(geo, set))
+            {
+                cout << " { ";
+                print_set(set);
+                cout << "} " ;
+            }
+        }
+    }
+    cout << endl;
 }
 
 class u128

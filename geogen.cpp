@@ -25,6 +25,8 @@ int max_irreduc_length = 0;
 
 const int factorial[] = {1,1,2,6,24,120,720,5040};
 
+// Convex geometry operations ##################################################
+
 void print_set(uint set)
 {
         for (uint j = 0; j < n; j++)
@@ -94,6 +96,46 @@ int is_meet_irreduc(ull geo, uint set)
     return 1;
 }
 
+// TODO: fix for all sized sets
+uint set_size(ull set)
+{
+    int size;
+    for (int i = 0; i < 32; i++)
+    {
+        if ((set >> i) & 0x01)
+            size++;
+    }
+
+    return size;
+}
+
+/* compute the closure of a set in a given geometry */
+uint closure_of(ull geo, uint set)
+{
+    int min_size = 999;
+    uint min_ext = 0;
+
+    // essentially just choose the smallest superset of "set"
+    for (uint geo_set = 0; geo_set < N; geo_set++)
+    {
+        if (element_of(geo_set, geo))
+        {
+            if (subset_of(set, geo_set))
+            {
+                // "geo_set" is a superset of set
+                int size = set_size(geo_set);
+                if (size < min_size)
+                {
+                    min_size = size;
+                    min_ext = geo_set;
+                }
+            }
+        }
+    }
+
+    return min_ext;
+}
+
 /* converts antimatroid to convex geometry (: */
 void matroid_to_convexgeo(ull matroid)
 {
@@ -119,7 +161,7 @@ void matroid_to_convexgeo(ull matroid)
     cout << "}" << endl;
 
     // also lets list all the non-convex sets
-    cout << "non-convex sets: {" << endl;
+    cout << "implications / closures: {" << endl;
     for (uint i = 0; i < N; i++)
     {
         if (!element_of(i, matroid)) {
@@ -128,9 +170,14 @@ void matroid_to_convexgeo(ull matroid)
 
             // convert antimatroid set to convex geo set (take complement)
             uint convex_set = (~i & (N - 1));
+            uint closure = closure_of(geo, convex_set);
+            uint implication = set_minus(closure, convex_set);
+
             cout << " *{ ";
             print_set(convex_set);
-            cout << "}" << endl;
+            cout << "} -> { ";
+            print_set(implication);
+            cout << "} " << endl;
         }
     } 
     cout << "}" << endl;
@@ -156,6 +203,8 @@ void matroid_to_convexgeo(ull matroid)
     // update max statistic
     max_irreduc_length = max(max_irreduc_length, irreduc_length);
 }
+
+// Beyond this is no man's land ################################################
 
 class u128
 {
@@ -339,7 +388,7 @@ vector<u128> onestep(const vector<u128> P)
         ans += psize/automorph.size();
         ans2 += 1;
 
-        cout << ans2 << "." << endl;
+        cout << endl << ans2 << "." << endl;
         S.print();
 
         u128 mask(0,0);
@@ -384,6 +433,7 @@ vector<u128> onestep(const vector<u128> P)
     return ret;
 }
 
+// End of no man's land ########################################################
 
 int main()
 {
@@ -428,5 +478,5 @@ int main()
 
     cout << "Yay!" << endl;
     cout << ans << " total convex geometries and " << ans2 << " non-isomorphic geometries found!" << endl;
-    cout << "Max length meet-irreducible set was " << max_irreduc_length << endl;
+    cout << "The largest meet-irreducible set was size " << max_irreduc_length << endl;
 }

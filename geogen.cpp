@@ -65,7 +65,7 @@ int one_element_extension_of(ull A, ull B)
     return subset_of(B, A) && is_one_elm;
 }
 
-int is_meet_reduc(ull geo, uint set)
+int is_meet_irreduc(ull geo, uint set)
 {
     // find supersets
     uint superset_count = 0;
@@ -134,13 +134,13 @@ void matroid_to_convexgeo(ull matroid)
     } 
     cout << "}" << endl;
 
-    // find meet-reducibles
-    cout << "meet-reducibles: " << endl;
+    // find meet-irreducibles
+    cout << "meet-irreducibles: " << endl;
     for (uint set = 0; set < N; set++)
     {
         if (element_of(set, geo))
         {
-            if (is_meet_reduc(geo, set))
+            if (is_meet_irreduc(geo, set))
             {
                 cout << " { ";
                 print_set(set);

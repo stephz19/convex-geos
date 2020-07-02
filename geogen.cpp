@@ -21,6 +21,7 @@ typedef unsigned int uint;
 
 int n = 3;
 int N = 1<<n;
+int max_irreduc_length = 0;
 
 const int factorial[] = {1,1,2,6,24,120,720,5040};
 
@@ -60,7 +61,7 @@ int has_one_bit(ull x)
 int one_element_extension_of(ull A, ull B)
 {
     uint difference = set_minus(A, B);
-    uint is_one_elm =  has_one_bit(difference);
+    uint is_one_elm = has_one_bit(difference);
 
     return subset_of(B, A) && is_one_elm;
 }
@@ -135,6 +136,7 @@ void matroid_to_convexgeo(ull matroid)
     cout << "}" << endl;
 
     // find meet-irreducibles
+    int irreduc_length = 0;
     cout << "meet-irreducibles: " << endl;
     for (uint set = 0; set < N; set++)
     {
@@ -142,6 +144,7 @@ void matroid_to_convexgeo(ull matroid)
         {
             if (is_meet_irreduc(geo, set))
             {
+                irreduc_length++;
                 cout << " { ";
                 print_set(set);
                 cout << "} " ;
@@ -149,6 +152,9 @@ void matroid_to_convexgeo(ull matroid)
         }
     }
     cout << endl;
+
+    // update max statistic
+    max_irreduc_length = max(max_irreduc_length, irreduc_length);
 }
 
 class u128
@@ -422,4 +428,5 @@ int main()
 
     cout << "Yay!" << endl;
     cout << ans << " total convex geometries and " << ans2 << " non-isomorphic geometries found!" << endl;
+    cout << "Max length meet-irreducible set was " << max_irreduc_length << endl;
 }

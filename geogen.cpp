@@ -29,14 +29,14 @@ const int factorial[] = {1,1,2,6,24,120,720,5040};
 
 void print_set(uint set)
 {
-        for (uint j = 0; j < n; j++)
+    for (uint j = 0; j < n; j++)
+    {
+        uint in_set = (set >> j) & 0x01;
+        if (in_set)
         {
-            uint in_set = (set >> j) & 0x01;
-            if (in_set)
-            {
-                cout << (char) ('a' + j) << " ";
-            }
+            cout << (char) ('a' + j) << " ";
         }
+    }
 }
 
 int element_of(ull element, ull set)
@@ -136,10 +136,59 @@ uint closure_of(ull geo, uint set)
     return min_ext;
 }
 
+int comparable_to(uint a, uint b)
+{
+    return subset_of(a, b) || subset_of(b, a);
+}
+
+// TODO: calculate the runtime of this thing lmaooooo
+const uint max_dimension = 5;
+uint max_antichain_size(ull q)
+{
+    if (q == 0) return 0;
+
+    int max = 0;
+
+    // TODO: remove lone points for optimization (:
+
+
+    for (int i = 0; i < N; i++)
+    {
+        if (element_of(i, q))
+        {
+            // choose this point
+            uint selected = i;
+            ull q_prime = q;
+
+            // remove selected point
+            q_prime &= ~(0x01 << i);
+
+            // remove all points its related to
+            for (int j = 0; j < N; j++)
+            {
+                if (element_of(j, q) &&  comparable_to(selected, j))
+                {
+                    // remove set j from available sets
+                    q_prime &= ~(0x01 << j);
+                }
+            }
+
+            // do a recursion, uwu
+            int size = 1 + max_antichain_size(q_prime);
+
+            if (size > max) max = size;
+        }
+    }
+
+    return max;
+}
+
+// The big printing function ###################################################
+
 /* converts antimatroid to convex geometry (: */
 void matroid_to_convexgeo(ull matroid)
 {
-    ull geo = 0;
+    ull geo = 0x00;
 
     // list convex sets and build "geo"
     cout << "convex sets: {" << endl;
@@ -150,11 +199,12 @@ void matroid_to_convexgeo(ull matroid)
             // convert antimatroid set to convex geo set (take complement)
             uint convex_set = (~i & (N - 1));
             // and append to convex geometry
-            geo |= (0x01 << convex_set);
+            geo |= (((ull) 0x01) << convex_set);
 
-            // also print as we go
+            // also print as we goooo
             cout << "  { ";
             print_set(convex_set);
+            //cout << convex_set;
             cout << "}" << endl;
         }
     } 
@@ -184,6 +234,7 @@ void matroid_to_convexgeo(ull matroid)
 
     // find meet-irreducibles
     int irreduc_length = 0;
+    ull irreducibles = 0x01;
     cout << "meet-irreducibles: " << endl;
     for (uint set = 0; set < N; set++)
     {
@@ -192,6 +243,7 @@ void matroid_to_convexgeo(ull matroid)
             if (is_meet_irreduc(geo, set))
             {
                 irreduc_length++;
+                irreducibles |= (((ull) 0x01) << set);
                 cout << " { ";
                 print_set(set);
                 cout << "} " ;
@@ -199,6 +251,10 @@ void matroid_to_convexgeo(ull matroid)
         }
     }
     cout << endl;
+
+    cout << "dimension: " << max_antichain_size(irreducibles) << endl;
+
+    cout << "id: " << geo << endl;
 
     // update max statistic
     max_irreduc_length = max(max_irreduc_length, irreduc_length);

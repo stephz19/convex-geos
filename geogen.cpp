@@ -238,7 +238,7 @@ void matroid_to_convexgeo(ull matroid)
     cout << "meet-irreducibles: " << endl;
     for (uint set = 0; set < N; set++)
     {
-        if (element_of(set, geo))
+        if (element_of(set, geo) && set != 0 && set != (N - 1))
         {
             if (is_meet_irreduc(geo, set))
             {
@@ -250,6 +250,7 @@ void matroid_to_convexgeo(ull matroid)
             }
         }
     }
+    
     cout << endl;
 
     cout << "dimension: " << max_antichain_size(irreducibles) << endl;

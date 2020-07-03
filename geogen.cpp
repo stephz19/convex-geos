@@ -253,6 +253,8 @@ void matroid_to_convexgeo(ull matroid)
     
     cout << endl;
 
+    // TODO: @jrogge this is where dimension stuff happens, you may replace
+    // this with your code (;
     cout << "dimension: " << max_antichain_size(irreducibles) << endl;
 
     cout << "id: " << geo << endl;

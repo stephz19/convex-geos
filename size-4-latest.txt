@@ -1,0 +1,851 @@
+Size of base set? 
+1.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { a b d }
+  { b d }
+  { a d }
+  { d }
+  { a b c }
+  { b c }
+  { a c }
+  { c }
+  { a b }
+  { b }
+  { a }
+  { }
+}
+implications / closures: {
+}
+meet-irreducibles: 
+ { a b c }  { a b d }  { a c d }  { b c d } 
+cdim: 4
+max antichain:
+ { a b c }  { a b d }  { a c d }  { b c d } 
+dimension: 4
+id: 65535
+
+2.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { a b d }
+  { b d }
+  { a d }
+  { d }
+  { b c }
+  { a c }
+  { c }
+  { a b }
+  { b }
+  { a }
+  { }
+}
+implications / closures: {
+ *{ a b c } -> { d } 
+}
+meet-irreducibles: 
+ { a b }  { a c }  { b c }  { a b d }  { a c d }  { b c d } 
+cdim: 3
+max antichain:
+ { a b }  { a c }  { b c } 
+dimension: 3
+id: 65407
+
+3.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { a b d }
+  { b d }
+  { a d }
+  { d }
+  { b c }
+  { a c }
+  { c }
+  { b }
+  { a }
+  { }
+}
+implications / closures: {
+ *{ a b } -> { d } 
+}
+meet-irreducibles: 
+ { a c }  { b c }  { a b d }  { a c d }  { b c d } 
+cdim: 3
+max antichain:
+ { a c }  { b c }  { a b d } 
+dimension: 3
+id: 65399
+
+4.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { a b d }
+  { b d }
+  { a d }
+  { d }
+  { b c }
+  { c }
+  { b }
+  { a }
+  { }
+}
+implications / closures: {
+ *{ a c } -> { d } 
+ *{ a b } -> { d } 
+}
+meet-irreducibles: 
+ { a }  { b c }  { a b d }  { a c d }  { b c d } 
+cdim: 3
+max antichain:
+ { b c }  { a b d }  { a c d } 
+dimension: 3
+id: 65367
+
+5.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { b d }
+  { a d }
+  { d }
+  { b c }
+  { a c }
+  { c }
+  { b }
+  { a }
+  { }
+}
+implications / closures: {
+ *{ a b } -> { c d } 
+}
+meet-irreducibles: 
+ { a c }  { b c }  { a d }  { b d }  { a c d }  { b c d } 
+cdim: 4
+max antichain:
+ { a c }  { b c }  { a d }  { b d } 
+dimension: 4
+id: 63351
+
+6.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { a b d }
+  { b d }
+  { a d }
+  { d }
+  { b c }
+  { c }
+  { b }
+  { }
+}
+implications / closures: {
+ *{ a } -> { d } 
+}
+meet-irreducibles: 
+ { b c }  { a b d }  { a c d }  { b c d } 
+cdim: 3
+max antichain:
+ { b c }  { a b d }  { a c d } 
+dimension: 3
+id: 65365
+
+7.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { a b d }
+  { b d }
+  { a d }
+  { d }
+  { c }
+  { b }
+  { a }
+  { }
+}
+implications / closures: {
+ *{ b c } -> { d } 
+ *{ a c } -> { d } 
+ *{ a b } -> { d } 
+}
+meet-irreducibles: 
+ { a }  { b }  { c }  { a b d }  { a c d }  { b c d } 
+cdim: 3
+max antichain:
+ { a }  { b }  { c } 
+dimension: 3
+id: 65303
+
+8.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { b d }
+  { a d }
+  { d }
+  { b c }
+  { c }
+  { b }
+  { a }
+  { }
+}
+implications / closures: {
+ *{ a c } -> { d } 
+ *{ a b } -> { c d } 
+}
+meet-irreducibles: 
+ { a }  { b c }  { a d }  { b d }  { a c d }  { b c d } 
+cdim: 3
+max antichain:
+ { a }  { b c }  { b d } 
+dimension: 3
+id: 63319
+
+9.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { a b d }
+  { b d }
+  { a d }
+  { d }
+  { c }
+  { b }
+  { }
+}
+implications / closures: {
+ *{ b c } -> { d } 
+ *{ a } -> { d } 
+}
+meet-irreducibles: 
+ { b }  { c }  { a b d }  { a c d }  { b c d } 
+cdim: 3
+max antichain:
+ { a b d }  { a c d }  { b c d } 
+dimension: 3
+id: 65301
+
+10.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { b d }
+  { a d }
+  { d }
+  { b c }
+  { c }
+  { b }
+  { }
+}
+implications / closures: {
+ *{ a b } -> { c d } 
+ *{ a } -> { d } 
+}
+meet-irreducibles: 
+ { b c }  { a d }  { b d }  { a c d }  { b c d } 
+cdim: 3
+max antichain:
+ { b c }  { a d }  { b d } 
+dimension: 3
+id: 63317
+
+11.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { b d }
+  { a d }
+  { d }
+  { c }
+  { b }
+  { a }
+  { }
+}
+implications / closures: {
+ *{ b c } -> { d } 
+ *{ a c } -> { d } 
+ *{ a b } -> { c d } 
+}
+meet-irreducibles: 
+ { a }  { b }  { c }  { a d }  { b d }  { a c d }  { b c d } 
+cdim: 3
+max antichain:
+ { a }  { b }  { c } 
+dimension: 3
+id: 63255
+
+12.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { b d }
+  { d }
+  { a c }
+  { c }
+  { b }
+  { a }
+  { }
+}
+implications / closures: {
+ *{ a d } -> { c } 
+ *{ b c } -> { d } 
+ *{ a b } -> { c d } 
+}
+meet-irreducibles: 
+ { a }  { b }  { a c }  { b d }  { a c d }  { b c d } 
+cdim: 2
+max antichain:
+ { a }  { b } 
+dimension: 2
+id: 62775
+
+13.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { a b d }
+  { b d }
+  { a d }
+  { d }
+  { c }
+  { }
+}
+implications / closures: {
+ *{ b } -> { d } 
+ *{ a } -> { d } 
+}
+meet-irreducibles: 
+ { c }  { a b d }  { a c d }  { b c d } 
+cdim: 3
+max antichain:
+ { a b d }  { a c d }  { b c d } 
+dimension: 3
+id: 65297
+
+14.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { b d }
+  { a d }
+  { d }
+  { c }
+  { b }
+  { }
+}
+implications / closures: {
+ *{ b c } -> { d } 
+ *{ a b } -> { c d } 
+ *{ a } -> { d } 
+}
+meet-irreducibles: 
+ { b }  { c }  { a d }  { b d }  { a c d }  { b c d } 
+cdim: 3
+max antichain:
+ { b }  { c }  { a d } 
+dimension: 3
+id: 63253
+
+15.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { b d }
+  { d }
+  { b c }
+  { c }
+  { b }
+  { }
+}
+implications / closures: {
+ *{ a } -> { c d } 
+}
+meet-irreducibles: 
+ { b c }  { b d }  { a c d }  { b c d } 
+cdim: 3
+max antichain:
+ { b c }  { b d }  { a c d } 
+dimension: 3
+id: 62805
+
+16.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { b d }
+  { d }
+  { a c }
+  { c }
+  { b }
+  { }
+}
+implications / closures: {
+ *{ b c } -> { d } 
+ *{ a b } -> { c d } 
+ *{ a } -> { c } 
+}
+meet-irreducibles: 
+ { b }  { a c }  { b d }  { a c d }  { b c d } 
+cdim: 2
+max antichain:
+ { b }  { a c } 
+dimension: 2
+id: 62773
+
+17.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { b d }
+  { a d }
+  { d }
+  { b }
+  { a }
+  { }
+}
+implications / closures: {
+ *{ c } -> { d } 
+ *{ a b } -> { c d } 
+}
+meet-irreducibles: 
+ { a }  { b }  { a d }  { b d }  { a c d }  { b c d } 
+cdim: 2
+max antichain:
+ { a }  { b } 
+dimension: 2
+id: 63239
+
+18.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { a b d }
+  { b d }
+  { a d }
+  { d }
+  { }
+}
+implications / closures: {
+ *{ c } -> { d } 
+ *{ b } -> { d } 
+ *{ a } -> { d } 
+}
+meet-irreducibles: 
+ { a b d }  { a c d }  { b c d } 
+cdim: 3
+max antichain:
+ { a b d }  { a c d }  { b c d } 
+dimension: 3
+id: 65281
+
+19.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { b d }
+  { a d }
+  { d }
+  { c }
+  { }
+}
+implications / closures: {
+ *{ a b } -> { c d } 
+ *{ b } -> { d } 
+ *{ a } -> { d } 
+}
+meet-irreducibles: 
+ { c }  { a d }  { b d }  { a c d }  { b c d } 
+cdim: 3
+max antichain:
+ { c }  { a d }  { b d } 
+dimension: 3
+id: 63249
+
+20.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { b d }
+  { d }
+  { a c }
+  { c }
+  { }
+}
+implications / closures: {
+ *{ a b } -> { c d } 
+ *{ b } -> { d } 
+ *{ a } -> { c } 
+}
+meet-irreducibles: 
+ { a c }  { b d }  { a c d }  { b c d } 
+cdim: 2
+max antichain:
+ { a c }  { b d } 
+dimension: 2
+id: 62769
+
+21.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { b d }
+  { a d }
+  { d }
+  { b }
+  { }
+}
+implications / closures: {
+ *{ c } -> { d } 
+ *{ a b } -> { c d } 
+ *{ a } -> { d } 
+}
+meet-irreducibles: 
+ { b }  { a d }  { b d }  { a c d }  { b c d } 
+cdim: 2
+max antichain:
+ { b }  { a d } 
+dimension: 2
+id: 63237
+
+22.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { b d }
+  { d }
+  { c }
+  { b }
+  { }
+}
+implications / closures: {
+ *{ b c } -> { d } 
+ *{ a } -> { c d } 
+}
+meet-irreducibles: 
+ { b }  { c }  { b d }  { a c d }  { b c d } 
+cdim: 2
+max antichain:
+ { b }  { c } 
+dimension: 2
+id: 62741
+
+23.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { c d }
+  { b d }
+  { d }
+  { b c }
+  { c }
+  { b }
+  { }
+}
+implications / closures: {
+ *{ a } -> { b c d } 
+}
+meet-irreducibles: 
+ { b c }  { b d }  { c d }  { b c d } 
+cdim: 3
+max antichain:
+ { b c }  { b d }  { c d } 
+dimension: 3
+id: 54613
+
+24.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { b d }
+  { a d }
+  { d }
+  { }
+}
+implications / closures: {
+ *{ c } -> { d } 
+ *{ a b } -> { c d } 
+ *{ b } -> { d } 
+ *{ a } -> { d } 
+}
+meet-irreducibles: 
+ { a d }  { b d }  { a c d }  { b c d } 
+cdim: 2
+max antichain:
+ { a d }  { b d } 
+dimension: 2
+id: 63233
+
+25.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { b d }
+  { d }
+  { c }
+  { }
+}
+implications / closures: {
+ *{ b } -> { d } 
+ *{ a } -> { c d } 
+}
+meet-irreducibles: 
+ { c }  { b d }  { a c d }  { b c d } 
+cdim: 2
+max antichain:
+ { c }  { b d } 
+dimension: 2
+id: 62737
+
+26.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { b d }
+  { d }
+  { b }
+  { }
+}
+implications / closures: {
+ *{ c } -> { d } 
+ *{ a } -> { c d } 
+}
+meet-irreducibles: 
+ { b }  { b d }  { a c d }  { b c d } 
+cdim: 2
+max antichain:
+ { b }  { a c d } 
+dimension: 2
+id: 62725
+
+27.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { c d }
+  { b d }
+  { d }
+  { c }
+  { b }
+  { }
+}
+implications / closures: {
+ *{ b c } -> { d } 
+ *{ a } -> { b c d } 
+}
+meet-irreducibles: 
+ { b }  { c }  { b d }  { c d }  { b c d } 
+cdim: 2
+max antichain:
+ { b }  { c } 
+dimension: 2
+id: 54549
+
+28.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { b d }
+  { d }
+  { }
+}
+implications / closures: {
+ *{ c } -> { d } 
+ *{ b } -> { d } 
+ *{ a } -> { c d } 
+}
+meet-irreducibles: 
+ { b d }  { a c d }  { b c d } 
+cdim: 2
+max antichain:
+ { b d }  { a c d } 
+dimension: 2
+id: 62721
+
+29.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { d }
+  { c }
+  { }
+}
+implications / closures: {
+ *{ b } -> { c d } 
+ *{ a } -> { c d } 
+}
+meet-irreducibles: 
+ { c }  { d }  { a c d }  { b c d } 
+cdim: 2
+max antichain:
+ { c }  { d } 
+dimension: 2
+id: 61713
+
+30.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { c d }
+  { b d }
+  { d }
+  { c }
+  { }
+}
+implications / closures: {
+ *{ b } -> { d } 
+ *{ a } -> { b c d } 
+}
+meet-irreducibles: 
+ { c }  { b d }  { c d }  { b c d } 
+cdim: 2
+max antichain:
+ { c }  { b d } 
+dimension: 2
+id: 54545
+
+31.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { a c d }
+  { c d }
+  { d }
+  { }
+}
+implications / closures: {
+ *{ c } -> { d } 
+ *{ b } -> { c d } 
+ *{ a } -> { c d } 
+}
+meet-irreducibles: 
+ { d }  { a c d }  { b c d } 
+cdim: 2
+max antichain:
+ { a c d }  { b c d } 
+dimension: 2
+id: 61697
+
+32.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { c d }
+  { b d }
+  { d }
+  { }
+}
+implications / closures: {
+ *{ c } -> { d } 
+ *{ b } -> { d } 
+ *{ a } -> { b c d } 
+}
+meet-irreducibles: 
+ { b d }  { c d }  { b c d } 
+cdim: 2
+max antichain:
+ { b d }  { c d } 
+dimension: 2
+id: 54529
+
+33.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { c d }
+  { d }
+  { c }
+  { }
+}
+implications / closures: {
+ *{ b } -> { c d } 
+ *{ a } -> { b c d } 
+}
+meet-irreducibles: 
+ { c }  { d }  { c d }  { b c d } 
+cdim: 2
+max antichain:
+ { c }  { d } 
+dimension: 2
+id: 53521
+
+34.
+convex sets: {
+  { a b c d }
+  { b c d }
+  { c d }
+  { d }
+  { }
+}
+implications / closures: {
+ *{ c } -> { d } 
+ *{ b } -> { c d } 
+ *{ a } -> { b c d } 
+}
+meet-irreducibles: 
+ { d }  { c d }  { b c d } 
+cdim: 1
+max antichain:
+ { d } 
+dimension: 1
+id: 53505
+Yay!
+485 total convex geometries and 34 non-isomorphic geometries found!
+The largest meet-irreducible set was size 7

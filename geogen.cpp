@@ -5,7 +5,6 @@
  * See Przemysław Uznański blog:
  * https://paracombinatorics.wordpress.com/2013/04/14/enumeration-of-antimatroids-part-iii/
  *
- * Alexander Frederiksen
  */
 
 #include <iostream>

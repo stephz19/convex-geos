@@ -49,6 +49,12 @@ int subset_of(ull A, ull B)
     return (B | A) == B;
 }
 
+int is_comparable(ull A, ull B)
+{
+    ull set_union = A | B;
+    return (set_union == A) || (set_union == B);
+}
+
 ull set_minus(ull A, ull B)
 {
     return A &~ B;
@@ -136,6 +142,32 @@ uint closure_of(ull geo, uint set)
     return min_ext;
 }
 
+/* naive brute force check if collection represents an antichain
+ feasible_sets will consist of meet irreducibles */
+bool is_antichain(vector<ull> feasible_sets, uint collection)
+{
+    int vec_size = feasible_sets.size();
+    for (ull slow = 0; slow < (vec_size - 1); slow++)
+    {
+        if (!((collection >> slow) & 0x01))
+        {
+            continue;
+        }
+        for (ull fast = slow + 1; fast < vec_size; fast++)
+        {
+            if (!((collection >> fast) & 0x01))
+            {
+                continue;
+            }
+            if (is_comparable(feasible_sets[slow], feasible_sets[fast]))
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 /* converts antimatroid to convex geometry (: */
 void matroid_to_convexgeo(ull matroid)
 {
@@ -182,21 +214,52 @@ void matroid_to_convexgeo(ull matroid)
     } 
     cout << "}" << endl;
 
-    // find meet-irreducibles
+    // find meet irreducible antichain
     int irreduc_length = 0;
     cout << "meet-irreducibles: " << endl;
+    vector<ull> meet_irrs;
+    // we have seen that for |X| < 5, we will have at most 12 meet irreducibles
+    int max_mis = 16;
+    meet_irrs.reserve(max_mis);
     for (uint set = 0; set < N; set++)
     {
         if (element_of(set, geo))
         {
             if (is_meet_irreduc(geo, set))
             {
+                meet_irrs.push_back(set);
                 irreduc_length++;
                 cout << " { ";
                 print_set(set);
                 cout << "} " ;
             }
         }
+    }
+    cout << endl;
+
+    uint collection_size = 1 << meet_irrs.size();
+    ull curr_max = 0;
+    uint curr_max_size = 0;
+    for (ull set = 1; set < collection_size; set++)
+    {
+        int sz = set_size(set);
+        if (is_antichain(meet_irrs, set) && (sz > curr_max_size))
+        {
+            curr_max_size = sz;
+            curr_max = set;
+        }
+    }
+    cout << "cdim: " << set_size(curr_max) << endl;
+    cout << "max antichain:" << endl;
+    for (int i = 0; i < meet_irrs.size(); i++)
+    {
+        if (!((curr_max >> i) & 0x01))
+        {
+            continue;
+        }
+        cout << " { ";
+        print_set(meet_irrs[i]);
+        cout << "} ";
     }
     cout << endl;
 
@@ -437,8 +500,15 @@ vector<u128> onestep(const vector<u128> P)
 
 int main()
 {
-    cout << "Size of base set? ";
-    cin >> n;
+    //cout << "E: False";
+    //cout << is_comparable(0b10, 0b1);
+    //cout << "E: False";
+    //cout << is_comparable(0b1110, 0b111);
+    //cout << "E: True";
+    //cout << is_comparable(0b11, 0b1);
+    //cout << "Size of base set? ";
+    //cin >> n;
+    n = 4;
     N = 1 << n;
 
     

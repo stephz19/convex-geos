@@ -105,7 +105,7 @@ int is_meet_irreduc(ull geo, uint set)
 // TODO: fix for all sized sets
 uint set_size(ull set)
 {
-    int size;
+    int size = 0;
     for (int i = 0; i < 32; i++)
     {
         if ((set >> i) & 0x01)
@@ -313,11 +313,13 @@ void matroid_to_convexgeo(ull matroid)
     // find meet irreducible antichain
     int irreduc_length = 0;
     ull irreducibles = 0x01;
+
     cout << "meet-irreducibles: " << endl;
     vector<ull> meet_irrs;
     // we have seen that for |X| < 5, we will have at most 12 meet irreducibles
     int max_mis = 16;
     meet_irrs.reserve(max_mis);
+
     for (uint set = 0; set < N; set++)
     {
         if (element_of(set, geo) && set != 0 && set != (N - 1))
@@ -336,18 +338,20 @@ void matroid_to_convexgeo(ull matroid)
     
     cout << endl;
   
-    uint collection_size = 1 << meet_irrs.size();
+    // find the the largest antichain
+    ull collection_size = ((ull) 1) << meet_irrs.size();
     ull curr_max = 0;
     uint curr_max_size = 0;
     for (ull set = 1; set < collection_size; set++)
     {
-        int sz = set_size(set);
+        uint sz = set_size(set);
         if (is_antichain(meet_irrs, set) && (sz > curr_max_size))
         {
             curr_max_size = sz;
             curr_max = set;
         }
     }
+
     cout << "cdim: " << set_size(curr_max) << endl;
     cout << "max antichain:" << endl;
     for (int i = 0; i < meet_irrs.size(); i++)
@@ -608,9 +612,10 @@ int main()
     //cout << is_comparable(0b1110, 0b111);
     //cout << "E: True";
     //cout << is_comparable(0b11, 0b1);
-    //cout << "Size of base set? ";
-    //cin >> n;
-    n = 4;
+    
+    cout << "Size of base set? ";
+    cin >> n;
+    //n = 4;
     N = 1 << n;
 
     

@@ -109,6 +109,45 @@ uint set_size(ull set)
     return size;
 }
 
+/* represent implications pred -> then */
+struct implication_t
+{
+    uint pred;
+    uint then;
+};
+
+/* check if a is redundant by b */
+int redundant_by(implication_t a, implication_t b)
+{
+    // if "a" contains "b" // 's predicate, and the result is just a subset
+    // of "b"'s result, then "a" is useless
+    return (subset_of(b.pred, a.pred)) && (subset_of(a.then, b.then));
+}
+
+void append_and_reduce_implication(vector<implication_t> & v, implication_t x)
+{
+    vector<implication_t>::iterator it = v.begin();
+    while (it != v.end())
+    {
+        implication_t appended = *it;
+        if (redundant_by(x, appended))
+        {
+            // dont append x
+            return;
+        } else if (redundant_by(appended, x))
+        {
+            // then remove appended 
+            it = v.erase(it);
+            continue;
+        }
+
+        ++it;
+    }
+
+    // otherwise x is not redundant and should be appended
+    v.push_back(x);
+}
+
 /* compute the closure of a set in a given geometry */
 uint closure_of(ull geo, uint set)
 {
@@ -211,7 +250,7 @@ void matroid_to_convexgeo(ull matroid)
     cout << "}" << endl;
 
     // also lets list all the non-convex sets
-    cout << "implications / closures: {" << endl;
+    vector<implication_t> implications;
     for (uint i = 0; i < N; i++)
     {
         if (!element_of(i, matroid)) {
@@ -219,17 +258,24 @@ void matroid_to_convexgeo(ull matroid)
             // complement is not in our convex geo
 
             // convert antimatroid set to convex geo set (take complement)
-            uint convex_set = (~i & (N - 1));
-            uint closure = closure_of(geo, convex_set);
-            uint implication = set_minus(closure, convex_set);
+            uint nonconvex_set = (~i & (N - 1));
+            uint closure = closure_of(geo, nonconvex_set);
+            uint implication = set_minus(closure, nonconvex_set);
 
-            cout << " *{ ";
-            print_set(convex_set);
-            cout << "} -> { ";
-            print_set(implication);
-            cout << "} " << endl;
+            append_and_reduce_implication(implications, {.pred = nonconvex_set,
+                                                         .then = implication});
         }
     } 
+
+    cout << "implications / closures: {" << endl;
+    for (implication_t impl : implications)
+    {
+            cout << " *{ ";
+            print_set(impl.pred);
+            cout << "} -> { ";
+            print_set(impl.then);
+            cout << "} " << endl;
+    }
     cout << "}" << endl;
 
     // find meet-irreducibles

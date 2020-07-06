@@ -22869,3 +22869,9 @@ id: 3506503681
 Yay!
 59386 total convex geometries and 672 non-isomorphic geometries found!
 The largest meet-irreducible set was size 12
+dimension 1: 1
+dimension 2: 72
+dimension 3: 312
+dimension 4: 228
+dimension 5: 50
+dimension 6: 9

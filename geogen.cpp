@@ -24,6 +24,9 @@ int max_irreduc_length = 0;
 
 const int factorial[] = {1,1,2,6,24,120,720,5040};
 
+const int max_dimension = 6;
+int dimension_counts[max_dimension] = { 0 };
+
 // Convex geometry operations ##################################################
 
 void print_set(uint set)
@@ -212,7 +215,6 @@ int comparable_to(uint a, uint b)
 }
 
 // TODO: calculate the runtime of this thing lmaooooo
-const uint max_dimension = 5;
 uint max_antichain_size(ull q)
 {
     if (q == 0) return 0;
@@ -364,7 +366,11 @@ void matroid_to_convexgeo(ull matroid)
         cout << "} ";
     }
     cout << endl;
-    cout << "dimension: " << max_antichain_size(irreducibles) << endl;
+    int dim = max_antichain_size(irreducibles);
+    cout << "dimension: " << dim << endl;
+
+    // count that dimension
+    dimension_counts[dim - 1]++;
 
     cout << "id: " << geo << endl;
 
@@ -655,4 +661,9 @@ int main()
     cout << "Yay!" << endl;
     cout << ans << " total convex geometries and " << ans2 << " non-isomorphic geometries found!" << endl;
     cout << "The largest meet-irreducible set was size " << max_irreduc_length << endl;
+
+    for (int i = 0; i < max_dimension; i++)
+    {
+        cout << "dimension " << (i + 1) << ": " << dimension_counts[i] << endl;
+    }
 }

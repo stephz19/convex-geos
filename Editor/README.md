@@ -1,7 +1,7 @@
 # Convex Geometry Circle Representation Editor
 
 ## Major Tasks:
-- Fill in Representation class
+- Fill in Representation class (Ajay)
 - Incorporate QuickhullDisk library
 - Calculate implications from collection of circles
 - Create interface

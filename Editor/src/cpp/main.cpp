@@ -1,3 +1,6 @@
+#include "Editor.hpp"
+
 int main(){
-    return 0;
+    Editor ed;
+    return ed.mainloop();
 }

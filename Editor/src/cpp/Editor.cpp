@@ -1,11 +1,16 @@
 #include "Editor.hpp"
 
-int mainloop()
+Editor::Editor()
+{
+}
+
+int Editor::mainloop()
 {
     int win_width = 200;
     int win_height = 600;
     const char* title = "Placeholder";
-    sf::RenderWindow window(sf::VideoMode(win_width, win_height), title);
+    //sf::RenderWindow window(sf::VideoMode(win_width, win_height), title);
+    sf::RenderWindow window(sf::VideoMode::getDesktopMode(), title);
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
 

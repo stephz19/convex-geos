@@ -19,9 +19,11 @@ class Representation
 
         //function types probably need to change
 
+	void add_circle(circle_t);
+
         void cvx_hull();
 
-        void compute_implications()
+        void compute_implications();
 
         void compute_cvx_geo();
 };

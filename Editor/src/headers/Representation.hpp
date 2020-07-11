@@ -5,16 +5,17 @@
 
 struct circle_t
 {
-    int x;
-    int y;
-    int r;
+    float x;
+    float y;
+    float r;
 };
 
 class Representation
 {
     private:
-        std::vector<circle_t> circles;
     public:
+        std::vector<circle_t> circles;
+
         Representation();
 
         //function types probably need to change

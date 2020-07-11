@@ -6,7 +6,8 @@
 class Editor
 {
     private:
-        Representation circles;
+        Representation rep;
+        sf::RenderWindow window;
 
     public:
         Editor();

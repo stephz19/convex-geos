@@ -58,9 +58,12 @@
   (and (= 2 (count-sized-sets n 4))
        (= 1 (count-sized-sets n 3))))
 
+(define (xor a b)
+  (not (equal? a b)))
+
 (define (squarical? id)
-  (or (top-square? id)
-      (bottom-square? id)))
+  (xor (top-square? id)
+       (bottom-square? id)))
 
 (define (parse-line line-num)
   ;; line should be of the format: id: <id>

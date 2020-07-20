@@ -63,7 +63,7 @@
 
 (define (squarical? id)
   (or (top-square? id)
-       (bottom-square? id)))
+      (bottom-square? id)))
 
 (define (parse-line line-num)
   ;; line should be of the format: id: <id>

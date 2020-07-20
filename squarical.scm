@@ -62,7 +62,7 @@
   (not (equal? a b)))
 
 (define (squarical? id)
-  (xor (top-square? id)
+  (or (top-square? id)
        (bottom-square? id)))
 
 (define (parse-line line-num)
